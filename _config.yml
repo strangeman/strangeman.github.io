@@ -1,0 +1,50 @@
+title: Околотехнические заметки
+description: Главное не забывать вести этот чертов бложек
+author: Антон Маркелов
+github: https://github.com/strangeman
+about: Автоматизирую, поддерживаю, починяю примус
+google_analytics: UA-44126153-1
+
+enableTags: true
+tagarray: []
+
+collections:
+  project:
+    output: true
+    permalink: /project/:path/
+
+social:
+    - icon: fa-facebook
+      link: "https://www.facebook.com/imstrangeman"
+    - icon: fa-skype
+      link: "skype://imstrangeman"
+    - icon: fa-twitter
+      link: "https://twitter.com/_strangeman"
+    - icon: fa-linkedin
+      link: "http://linkedin.com/in/markelovanton"
+
+share:
+  twitter_username: _strangeman
+  fb_appid: imstrangeman
+
+urls:
+    - text: Обо мне
+      url: /about/
+    - text: Резюме
+      url: /resume/
+    # - text: Projects
+    #   url: /projects/
+    - text: Github
+      url: https://github.com/strangeman
+    - text: XML Feed
+      url: /feed.xml
+
+url: "https://strangeman.info"
+baseurl: ""
+paginate: 20
+per_page: 20
+paginate_path: "/page:num/"
+markdown: kramdown
+gems:
+  - jekyll-paginate
+  - jekyll-gist
