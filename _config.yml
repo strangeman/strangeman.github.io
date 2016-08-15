@@ -3,7 +3,7 @@ description: Главное не забывать вести этот черто
 author: Антон Маркелов
 github: https://github.com/strangeman
 about: Автоматизирую, поддерживаю, починяю примус
-google_analytics: UA-44126153-1
+google_analytics: UA-44126153-3
 
 enableTags: true
 tagarray: []
@@ -39,7 +39,7 @@ urls:
     - text: XML Feed
       url: /feed.xml
 
-url: "https://strangeman.info"
+url: "https://blog.strangeman.info"
 baseurl: ""
 paginate: 20
 per_page: 20
