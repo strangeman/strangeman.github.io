@@ -8,7 +8,7 @@ permalink: /resume/
 * Город проживания: Комсомольск-на-Амуре, Россия
 * Часовой пояс: GMT+10/МСК+7
 * Email: doublic[at]gmail.com
-* Telegram: http://t.me/strangeman
+* Telegram: [@strangeman](https://t.me/strangeman)
 * Skype: imstrangeman
 * Рассматриваю предложения о удаленной работе
 
