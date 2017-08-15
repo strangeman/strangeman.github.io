@@ -1,6 +1,6 @@
 ---
 layout: post
-categories: ansible
+categories: kafka
 title: "Kafka operation tips"
 description: "Some troubleshooting advices about kafka"
 keywords: "kafka, tips"
@@ -21,11 +21,12 @@ Topic:f6b77500-a1f9-4c1f-8fe1-291ae28aff47  PartitionCount:1    ReplicationFacto
 ```
 
 We interested in following parameters:
+
 * `ReplicationFactor` (count of replicas for each partition in this topic)
 * `Isr` (ids of replicas which have latest actual data, same as `broker.id` in kafka config)
 * `Leader` ('main' node for this partition)
 
-Example 1: ReplicationFactor=3, all nodes are available
+*Example 1: ReplicationFactor=3, all nodes are available*
 
 ```
 kafka-topics --topic 9146aeea-1b19-48a0-9001-c77e35d74721  --describe --zookeeper localhost:2181
@@ -34,7 +35,7 @@ Topic:9146aeea-1b19-48a0-9001-c77e35d74721  PartitionCount:1    ReplicationFacto
     Topic: 9146aeea-1b19-48a0-9001-c77e35d74721 Partition: 0    Leader: 1   Replicas: 1,2,3 Isr: 1,3,2
 ```
 
-Example 2: ReplicationFactor=3, one node is unavailable
+*Example 2: ReplicationFactor=3, one node is unavailable*
 
 ```
 kafka-topics --topic 9146aeea-1b19-48a0-9001-c77e35d74721  --describe --zookeeper localhost:2181
