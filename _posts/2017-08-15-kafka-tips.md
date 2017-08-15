@@ -1,7 +1,7 @@
 ---
 layout: post
 categories: ansible
-title: "Kafka (Apache, Confluent) operation tips"
+title: "Kafka operation tips"
 description: "Some troubleshooting advices about kafka"
 keywords: "kafka, tips"
 ---
@@ -26,6 +26,7 @@ We interested in following parameters:
 * `Leader` ('main' node for this partition)
 
 Example 1: ReplicationFactor=3, all nodes are available
+
 ```
 kafka-topics --topic 9146aeea-1b19-48a0-9001-c77e35d74721  --describe --zookeeper localhost:2181
  
@@ -34,6 +35,7 @@ Topic:9146aeea-1b19-48a0-9001-c77e35d74721  PartitionCount:1    ReplicationFacto
 ```
 
 Example 2: ReplicationFactor=3, one node is unavailable
+
 ```
 kafka-topics --topic 9146aeea-1b19-48a0-9001-c77e35d74721  --describe --zookeeper localhost:2181
  
@@ -44,6 +46,7 @@ Topic:9146aeea-1b19-48a0-9001-c77e35d74721  PartitionCount:1    ReplicationFacto
 ## How to change topic Replication Factor
 
 1) Need to create JSON file with new topic configuration, for example:
+
 ```
 {"partitions":                       
     [{"topic": "f6b77500-a1f9-4c1f-8fe1-291ae28aff47",                   
@@ -52,9 +55,11 @@ Topic:9146aeea-1b19-48a0-9001-c77e35d74721  PartitionCount:1    ReplicationFacto
 "version":1                          
 }
 ```
+
 and store it somewhere on Kafka server (`/tmp/reassign.json` in my case)
 
 2) Then need to apply this file
+
 ```
 kafka-reassign-partitions --zookeeper localhost:2181 --execute --reassignment-json-file /tmp/reassign.json
  
@@ -67,6 +72,7 @@ Successfully started reassignment of partitions {"version":1,"partitions":[{"top
 ```
 
 3) Check how reassignment is going
+
 ```
 kafka-reassign-partitions --zookeeper localhost:2181 --verify --reassignment-json-file /tmp/reassign.json
  
@@ -80,7 +86,7 @@ Reassignment of partition [f6b77500-a1f9-4c1f-8fe1-291ae28aff47,0] completed suc
 kafka-topics --zookeeper localhost:2181 --alter --partitions 5 --topic 9bd6a5bf-5fdb-4900-91af-c7b6d560968f
 ```
 
-# How to fix `Leader: -1` for Kafka partition
+# How to fix 'Leader: -1' for Kafka partition
 
 ## How it looks like
 
@@ -95,6 +101,7 @@ That partition has no In-Sync Replicas (Isr) and cannot elect a Leader. Usually,
 ## How to fix it
 
 TIP. We can get a list of all topics that have partitions without Leader with this one-liner:
+
 ```
 kafka-topics --describe --zookeeper localhost:2181 | grep "Leader: -1" | cut -f 2 | uniq | cut -f 2 -d " "
 ```
@@ -102,17 +109,20 @@ kafka-topics --describe --zookeeper localhost:2181 | grep "Leader: -1" | cut -f 
 Kafka can do Unclean Leader Election. By default, Kafka elects partition leader from in-sync replicas, to guarantee data consistency. But, when the partition has no in-sync replicas, we can switch to a special mode, which can elect a leader from the random available replica. This is the dangerous operation, because we may lose some data, but this is better than nothing.
 
 1) Enable `unclean.leader.election.enable=false` for topic:
+
 ```
 kafka-topics --config unclean.leader.election.enable=true --zookeeper localhost:2181 --topic _schemas --alter
 Updated config for topic "_schemas".
 ```
 
 2) Restart Kafka
+
 ```
 systemctl restart kafka
 ```
 
 3) Check that leader was elected and in-sync replicas was appeared
+
 ```
 kafka-topics --topic _schemas --describe --zookeeper localhost:2181
 Topic:_schemas    PartitionCount:1    ReplicationFactor:3    Configs:unclean.leader.election.enable=false,cleanup.policy=compact
@@ -120,12 +130,14 @@ Topic:_schemas    PartitionCount:1    ReplicationFactor:3    Configs:unclean.lea
 ```
 
 4) Disable `unclean.leader.election` back
+
 ```
 kafka-topics --config unclean.leader.election.enable=false --zookeeper localhost:2181 --topic _schemas --alter
 Updated config for topic "_schemas".
 ```
 
 5) And restart Kafka again
+
 ```
 systemctl restart kafka
 ```
