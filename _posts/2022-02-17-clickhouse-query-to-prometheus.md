@@ -66,5 +66,5 @@ clickhouse_db_engines{db_name='system', table='clusters',engine='SystemClusters'
 ```
 
 ## Источник
-<https://clickhouse.com/docs/en/interfaces/http/#predefined_http_interface>
-<https://clickhouse.com/docs/en/interfaces/formats/#format-template>
+* <https://clickhouse.com/docs/en/interfaces/http/#predefined_http_interface>
+* <https://clickhouse.com/docs/en/interfaces/formats/#format-template>
