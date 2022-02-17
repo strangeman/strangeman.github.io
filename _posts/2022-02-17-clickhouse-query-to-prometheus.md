@@ -20,7 +20,7 @@ keywords: "clickhouse, prometheus, metrics"
 ```
 # TYPE clickhouse_db_engines gauge
 # HELP show table engines
-clickhouse_db_engines{db_name=${database:Quoted}, table=${name:Quoted},engine=${engine:Quoted}} 1
+clickhouse_db_engines{db_name="${database:Raw}", table="${name:Raw}",engine="${engine:Raw}"} 1
 ```
 
 Также нам надо переопределить дефолтное значение `format_template_rows_between_delimiter` на пустую строку (по дефолту стоит `\n` и это будет приводить к пустым строкам в списке метрик, что для Prometheus не подойдет).
