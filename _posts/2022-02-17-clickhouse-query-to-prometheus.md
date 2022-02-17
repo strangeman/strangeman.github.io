@@ -49,18 +49,15 @@ clickhouse_db_engines{db_name="${database:Raw}", table="${name:Raw}",engine="${e
 ```
 curl http://localhost:8123/table_engines
 
-# TYPE counter
+# TYPE clickhouse_db_engines gauge
 # HELP show table engines
-clickhouse_db_engines{db_name='system', table='aggregate_function_combinators',engine='SystemAggregateFunctionCombinators'} 1
-# TYPE counter
+clickhouse_db_engines{db_name="system", table="replication_queue",engine="SystemReplicationQueue"} 1
+# TYPE clickhouse_db_engines gauge
 # HELP show table engines
-clickhouse_db_engines{db_name='system', table='asynchronous_metrics',engine='SystemAsynchronousMetrics'} 1
-# TYPE counter
+clickhouse_db_engines{db_name="system", table="role_grants",engine="SystemRoleGrants"} 1
+# TYPE clickhouse_db_engines gauge
 # HELP show table engines
-clickhouse_db_engines{db_name='system', table='build_options',engine='SystemBuildOptions'} 1
-# TYPE counter
-# HELP show table engines
-clickhouse_db_engines{db_name='system', table='clusters',engine='SystemClusters'} 1
+clickhouse_db_engines{db_name="system", table="roles",engine="SystemRoles"} 1
 ...
 ```
 
