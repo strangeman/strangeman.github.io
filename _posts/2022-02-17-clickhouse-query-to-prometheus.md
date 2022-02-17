@@ -1,6 +1,6 @@
 ---
 layout: post
-categories: devops, monitoring, clickhouse
+categories: devops monitoring clickhouse
 title: "Как превратить кастомный запрос ClickHouse в метрики для Prometheus"
 description: "Как превратить кастомный запрос ClickHouse в метрики для Prometheus"
 keywords: "clickhouse, prometheus, metrics"
