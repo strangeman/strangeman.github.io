@@ -18,7 +18,7 @@ keywords: "clickhouse, prometheus, metrics"
 Нам надо задать `format_template_row` для форматирования каждой строки результата запроса под требования Prometheus. Для этого создаем файл `/var/lib/clickhouse/format_schemas/prometheus_table_engine.format`:
 
 ```
-# TYPE counter
+# TYPE clickhouse_db_engines counter
 # HELP show table engines
 clickhouse_db_engines{db_name=${database:Quoted}, table=${name:Quoted},engine=${engine:Quoted}} 1
 ```
