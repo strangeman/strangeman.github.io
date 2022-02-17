@@ -15,13 +15,15 @@ keywords: "clickhouse, prometheus, metrics"
 
 Теперь этот запрос надо обернуть в корректное форматирование. Для этого используются параметры запроса `FORMAT Template` и `SETTINGS format_template_*` (`format_template_row`, `format_template_resultset`, `format_template_rows_between_delimiter`). Эти параметры описаны в [документации](https://clickhouse.com/docs/ru/interfaces/formats/#format-template).
 
-Нам надо задать только `format_template_row` для форматирования каждой строки результата запроса под требования Prometheus. Для этого создаем файл `/var/lib/clickhouse/format_schemas/prometheus_table_engine.format`:
+Нам надо задать `format_template_row` для форматирования каждой строки результата запроса под требования Prometheus. Для этого создаем файл `/var/lib/clickhouse/format_schemas/prometheus_table_engine.format`:
 
 ```
 # TYPE counter
 # HELP show table engines
 clickhouse_db_engines{db_name=${database:Quoted}, table=${name:Quoted},engine=${engine:Quoted}} 1
 ```
+
+Также нам надо переопределить дефолтное значение `format_template_rows_between_delimiter` на пустую строку (по дефолту стоит `\n` и это будет приводить к пустым строкам в списке метрик, что для Prometheus не подойдет).
 
 Теперь нам надо прикрутить этот запрос к какому-нибудь URL в ClickHouse. Это делается через конфиг, через секцию `<http_handlers>`:
 
@@ -32,12 +34,13 @@ clickhouse_db_engines{db_name=${database:Quoted}, table=${name:Quoted},engine=${
             <methods>GET</methods>
             <handler>
                 <type>predefined_query_handler</type>
-                <query>SELECT database,name,engine FROM system.tables FORMAT Template SETTINGS format_template_row = 'prometheus_table_engine.format' </query>
+                <query>SELECT database,name,engine FROM system.tables FORMAT Template SETTINGS format_template_row = 'prometheus_table_engine.format', format_template_rows_between_delimiter = '' </query>
             </handler>
         </rule>
         <defaults/>
     </http_handlers>
 ```
+
 
 Важно: внутри секции обязательно должно быть поле `<defaults/>`, иначе отломаются все стандартные эндпойнты.
 
@@ -49,19 +52,15 @@ curl http://localhost:8123/table_engines
 # TYPE counter
 # HELP show table engines
 clickhouse_db_engines{db_name='system', table='aggregate_function_combinators',engine='SystemAggregateFunctionCombinators'} 1
-
 # TYPE counter
 # HELP show table engines
 clickhouse_db_engines{db_name='system', table='asynchronous_metrics',engine='SystemAsynchronousMetrics'} 1
-
 # TYPE counter
 # HELP show table engines
 clickhouse_db_engines{db_name='system', table='build_options',engine='SystemBuildOptions'} 1
-
 # TYPE counter
 # HELP show table engines
 clickhouse_db_engines{db_name='system', table='clusters',engine='SystemClusters'} 1
-
 ...
 ```
 
