@@ -31,7 +31,7 @@ urls:
     - text: Обо мне
       url: /about/
     - text: Резюме
-      url: /resume/
+      url: /cv/
     # - text: Projects
     #   url: /projects/
     - text: Github
