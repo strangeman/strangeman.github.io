@@ -14,10 +14,10 @@ collections:
     permalink: /project/:path/
 
 social:
+    - icon: fa-telegram
+      link: "https://t.me/strangeman"
     - icon: fa-facebook
       link: "https://www.facebook.com/imstrangeman"
-    - icon: fa-skype
-      link: "skype://imstrangeman"
     - icon: fa-twitter
       link: "https://twitter.com/_strangeman"
     - icon: fa-linkedin
