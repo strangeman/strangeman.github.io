@@ -1,16 +1,15 @@
 ---
 layout: page
 title: Резюме
-permalink: /resume/
+permalink: /cv/
 ---
 
 ## Персональные данные
 
-* Город проживания: Комсомольск-на-Амуре, Россия
-* Часовой пояс: GMT+10/МСК+7
+* Город проживания: Калининград, Россия
+* Часовой пояс: GMT+2/МСК-1
 * Email: doublic[at]gmail.com
 * Telegram: [@strangeman](https://t.me/strangeman)
-* Skype: imstrangeman
 * Рассматриваю предложения о удаленной работе
 
 ## Компетенции
