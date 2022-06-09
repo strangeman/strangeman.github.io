@@ -1,7 +1,7 @@
 ---
 layout: page
 title: Резюме
-permalink: /cv/
+permalink: /cv-rus/
 ---
 
 ## Персональные данные
