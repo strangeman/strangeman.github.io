@@ -2,7 +2,7 @@
 layout: post
 categories: devops recruting
 title: "Как я новую работу искал"
-description: "Как я новую работу искал"
+description: "Зеркало треда из твиттера про месяц хождения по собесам"
 keywords: "devops, recruting"
 ---
 Перекладываю тредик из твиттера сюда, чтобы не потерялось в случае каких-то проблем. 
