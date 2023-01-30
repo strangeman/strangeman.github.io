@@ -31,7 +31,7 @@ keywords: "terraform, aws"
 
 Я обычно использовал его вместе с `terraform import` для кросс-верификации, чтобы убедиться что сгенерированный код совпадает с импортированным стейтом.
 
-Небольшой гайд по использованию если что есть тут: <https://blog.strangeman.info/devops/2023/01/30/terraform-import-tools.html>
+Небольшой гайд по использованию если что есть тут: <https://blog.strangeman.info/devops/2023/01/30/terraformer-guide.html>
 
 Также есть утилита [tfadd](https://github.com/magodo/tfadd), которая умеет генерировать tf-код из стейта (то есть сначала импортируем стейт через `terraform import`, а потом генерируем из него код через `tfadd`), но я ей не пользовался.
 
