@@ -5,8 +5,6 @@ title: "CI/CD for Deploying Flows in Prefect Cloud 2"
 description: "Some notes about tinkering with a deployment process for a Prefect Cloud"
 keywords: "ci-cd, prefect"
 ---
-# CI/CD for Deploying Flows in Prefect Cloud 2
-
 ## Initial Requirements
 
 - We've got a bunch of Python scripts representing various Flows, all packed in one repository.
