@@ -24,7 +24,7 @@ The Prefect documentation ([https://docs.prefect.io/2.14.3/](https://docs.prefec
 
 ## Description of Deployment Infrastructure
 
-To keep things simple, we decided to skip storage blocks and store all Flows directly in the Docker image of the agent. This image is also used for continuous integration (CI):
+To keep things simple, we decided to skip storage blocks and store all Flows directly in the Docker image of the agent. This image is also used for CI:
 
 ```Dockerfile
 # change to exact version if needed, e.g. 2.8.6-python3.10
@@ -161,7 +161,7 @@ deployments:
 
 All of this is deployed using Github Actions (some code parts are omitted as they are not relevant to the topic):
 
-```yaml
+```yaml{% raw %}
 name: Deploy to dev
 on:
   workflow_dispatch:
@@ -200,7 +200,7 @@ jobs:
       image: "${{ needs.build-image.outputs.image }}" # run in prefect container from the first step
 
     env:
-      PREFECT_API_KEY: ${{ secrets.PREFECT_API_KEY}}
+      PREFECT_API_KEY: ${{ secrets.PREFECT_API_KEY }}
       WORKSPACE_NAME: "example"
       PREFECT_IMAGE: "${{ needs.build-image.outputs.image }}"
 
@@ -236,7 +236,7 @@ jobs:
         id: build
         run: |
           python upload_deployments.py prefect-deployments-dev.yaml
-          echo "Flows from prefect-deployments-dev.yaml deployed to Prefect Cloud (dev)" >> $GITHUB_STEP_SUMMARY
+          echo "Flows from prefect-deployments-dev.yaml deployed to Prefect Cloud (dev)" >> $GITHUB_STEP_SUMMARY{% endraw %}
 ```
 
 ## Conclusion
