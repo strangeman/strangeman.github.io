@@ -61,6 +61,7 @@ import yaml
 import sys
 import subprocess
 import json
+from  shlex import quote
 
 def read_yaml_file(file_path):
     try:
@@ -82,36 +83,33 @@ def construct_prefect_command(deployment, ib_block):
     if "name" not in deployment:
         raise KeyError("'name' field is mandatory")
 
-    command = f"prefect deployment build {deployment['entrypoint']} -n {deployment['name']} -a --skip-upload -ib {ib_block}"
+    command = f"prefect deployment build {quote(deployment['entrypoint'])} -n {quote(deployment['name'])} -a --skip-upload -ib {quote(ib_block)}"
 
     # optional fields
     if "parameters" in deployment:
-        command += f" --params=\'{json.dumps(deployment['parameters'])}\'"
+        command += f" --params={quote(json.dumps(deployment['parameters']))}"
 
-    if "version" in deployment:
-        command += f" --version=\"{deployment['version']\""
-    
     if "tags" in deployment:
         for tag in deployment["tags"]:
-            command += f" --tag=\"{tag}\""
+            command += f" --tag={quote(tag)}"
 
     if "schedule" in deployment:
         if "cron" in deployment["schedule"]:
-            command += f" --cron=\"{deployment['schedule']['cron']}\""
+            command += f" --cron={quote(deployment['schedule']['cron'])}"
         if "interval" in deployment["schedule"]:
-            command += f" --interval=\"{deployment['schedule']['interval']}\""
+            command += f" --interval={quote(deployment['schedule']['interval'])}"
         if "rrule" in deployment["schedule"]:
-            command += f" --rrule=\"{deployment['schedule']['rrule']}\""
+            command += f" --rrule={quote(deployment['schedule']['rrule'])}"
         if "timezone" in deployment["schedule"]:
-            command += f" --timezone=\"{deployment['schedule']['timezone']}\""
+            command += f" --timezone={quote(deployment['schedule']['timezone'])}"
         if "anchor-date" in deployment["schedule"]:
-            command += f" --anchor-date=\"{deployment['schedule']['anchor-date']}\""
+            command += f" --anchor-date={quote(deployment['schedule']['anchor-date'])}"
 
     if "work_pool" in deployment:
         if "name" in deployment["work_pool"]:
-            command += f" --pool=\"{deployment['work_pool']['name']}\""
+            command += f" --pool={quote(deployment['work_pool']['name'])}"
         if "work_queue_name" in deployment["work_pool"]:
-            command += f" --work-queue=\"{deployment['work_pool']['work_queue_name']}\""
+            command += f" --work-queue={quote(deployment['work_pool']['work_queue_name'])}"
 
     return command
 
