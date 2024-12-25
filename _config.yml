@@ -30,10 +30,8 @@ share:
 urls:
     - text: Обо мне
       url: /about/
-    - text: CV Rus
-      url: /cv-rus/
     - text: Resume Eng (PDF)
-      url: /static/DevOps_Engineer_Resume_Anton_Markelov.pdf
+      url: /static/Anton-Markelov-DevOps-CV-20241225.pdf
     - text: Github
       url: https://github.com/strangeman
     - text: XML Feed
