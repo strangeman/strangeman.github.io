@@ -31,7 +31,7 @@ urls:
     - text: Обо мне
       url: /about/
     - text: Resume Eng (PDF)
-      url: /static/Anton-Markelov-DevOps-CV-20241225.pdf
+      url: /static/Anton-Markelov-DevOps-CV-20241225-2.pdf
     - text: Github
       url: https://github.com/strangeman
     - text: XML Feed
