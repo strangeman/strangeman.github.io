@@ -1,8 +1,8 @@
-title: Околотехнические заметки
-description: Главное не забывать вести этот чертов бложек
-author: Антон Маркелов
+title: Tech notes
+description: Some random notes about DevOps, SRE, Linux and other stuff. Rus/Eng.
+author: Anton Markelov
 github: https://github.com/strangeman
-about: Автоматизирую, поддерживаю, починяю примус
+about: Automating, maintaining, fixing stuff
 google_analytics: UA-44126153-3
 
 enableTags: true
@@ -28,7 +28,7 @@ share:
   fb_appid: imstrangeman
 
 urls:
-    - text: Обо мне
+    - text: About Me
       url: /about/
     - text: Resume Eng (PDF)
       url: /static/Anton-Markelov-DevOps-CV-20241225-2.pdf
