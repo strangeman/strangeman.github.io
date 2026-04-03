@@ -1,9 +1,9 @@
 ---
 layout: page
-title: Обо мне
+title: About Me
 permalink: /about/
 ---
 
-Привет! Меня зовут Антон. Я айтишник, специализируюсь на внедрении DevOps-практик и разработке инфраструктурной платформы для предоставления разработчикам внутреннего PaaS. Мое резюме можно почитать [здесь](static/Anton-Markelov-DevOps-CV-20241225-2.pdf).
+Hello there! My name is Anton. I'm a tech guy specializing in implementing DevOps practices and building an infrastructure platform. You can check out my CV [here](static/Anton-Markelov-DevOps-CV-20241225-2.pdf).
 
 email: doublic[at]gmail.com
