@@ -10,7 +10,7 @@ keywords: "ansible"
 
 Есть в Ansible массив хэшей с данными о сервисах:
 
-```
+```yaml
 apps:
   - app_name: "app1"
     db_name: "db1" 
@@ -24,7 +24,7 @@ apps:
 
 Я хочу этот массив преобразовать в другой, для того чтобы передать плейбуку для создания баз:
 
-```
+```yaml
 databases:
   - name: "db1" 
     owner: "own1"
