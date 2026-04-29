@@ -1,5 +1,7 @@
 ---
 layout: default
+pagination:
+  enabled: true
 ---
 
 <div id="home">
@@ -33,7 +35,7 @@ layout: default
           <li><a href="/">{{ page }}</a></li>
         {% else %}
           <li>
-            <a href="{{ site.paginate_path | prepend: site.baseurl | replace: '//', '/' | replace: ':num', page }}">{{ page }}</a>
+            <a href="{{ site.pagination.permalink | prepend: site.baseurl | replace: '//', '/' | replace: ':num', page }}">{{ page }}</a>
           </li>
         {% endif %}
       {% endfor %}
